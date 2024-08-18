@@ -1,0 +1,8 @@
+postgresql
+pw : password
+port : 5432
+===================
+superbase.com
+organization : dk7648's Org
+server name : test
+pw: dk7648testpassword

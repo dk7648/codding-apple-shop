@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div class="card" th:each="notice : ${notices}">
+    <h4 th:text="${notice.id}"></h4>
+    <h4 th:text="${notice.title}"></h4>
+    <h4 th:text="${notice.date}"></h4>
+</div>
+</body>
+</html>
