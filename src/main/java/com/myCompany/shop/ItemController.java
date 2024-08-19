@@ -17,7 +17,7 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemRepository itemRepository;
-
+    private final ItemService itemService;
 
     @GetMapping("/list")
     String list(Model model) {
@@ -48,17 +48,18 @@ public class ItemController {
     */
     @PostMapping("/add")
     String add(@ModelAttribute Item newItem) {
-        itemRepository.save(newItem);
+        itemService.saveItem(newItem);
         return "redirect:/list";
     }
 
     @GetMapping("/detail/{id}")
     String detail(@PathVariable Long id, Model model) {
-        Optional<Item> item = itemRepository.findById(id);
-        if (item.isPresent()) {
+        try {
+            Optional<Item> item = itemService.findItem(id);
             model.addAttribute("item", item.get());
             return "detail.html";
-        } else {
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
             return "redirect:/list";
         }
     }
