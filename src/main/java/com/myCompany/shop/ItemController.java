@@ -64,6 +64,19 @@ public class ItemController {
         }
     }
 
+    @GetMapping("/edit/{id}")
+    String edit(@PathVariable Long id, Model model) {
+        try {
+            Optional<Item> item = itemService.findItem(id);
+
+            model.addAttribute("item", item.get());
+            return "edit.html";
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            return "redirect:/list";
+        }
+    }
+
     //REST API 서버의 경우. try catch로는 이렇게 처리함.
 //    @GetMapping("/detail/{id}")
 //    ResponseEntity<String> detail(@PathVariable Long id, Model model) {
