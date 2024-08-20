@@ -76,7 +76,6 @@ public class ItemController {
             return "redirect:/list";
         }
     }
-
     //REST API 서버의 경우. try catch로는 이렇게 처리함.
 //    @GetMapping("/detail/{id}")
 //    ResponseEntity<String> detail(@PathVariable Long id, Model model) {
