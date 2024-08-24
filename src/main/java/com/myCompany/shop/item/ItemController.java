@@ -1,14 +1,12 @@
-package com.myCompany.shop;
+package com.myCompany.shop.item;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
@@ -68,12 +66,31 @@ public class ItemController {
     String edit(@PathVariable Long id, Model model) {
         try {
             Optional<Item> item = itemService.findItem(id);
-
             model.addAttribute("item", item.get());
             return "edit.html";
         } catch(Exception e) {
             System.out.println(e.getMessage());
             return "redirect:/list";
+        }
+    }
+
+    @PostMapping("/test")
+    String test1(@RequestBody Map<String, Object> body) {
+        System.out.println(body.get("name"));
+        return "redirect:/list";
+    }
+
+    @DeleteMapping("/delete")
+    ResponseEntity<String> delete(@RequestParam Long id) {
+        System.out.println(id);
+        Optional<Item> target = itemRepository.findById(id);
+        if(target.isPresent()) {
+            System.out.println("now delete : " + target.get());
+            itemRepository.delete(target.get());
+            return ResponseEntity.status(HttpStatus.OK).body("삭제완료");
+        }
+        else {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body("삭제 실패");
         }
     }
     //REST API 서버의 경우. try catch로는 이렇게 처리함.

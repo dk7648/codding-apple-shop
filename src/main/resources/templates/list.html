@@ -23,6 +23,17 @@
         <p th:text="${item.price}">7억</p>
     </div>
 </div>
-
+<button class="btn">버튼</button>
+<script>
+    document.querySelectorAll('.btn')[0].addEventListener('click', function() {
+        fetch('/test', {
+    method : 'POST',
+    headers : {
+      "Content-Type": "application/json",
+    },
+    body : JSON.stringify({title : 'kim', price : 123})
+  })
+    })
+</script>
 </body>
 </html>
