@@ -3,6 +3,7 @@ package com.myCompany.shop.item;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +23,12 @@ public class ItemController {
         List<Item> items = itemRepository.findAll();
         model.addAttribute("items", items);
         model.addAttribute("name2", "개비싼 셔츠");
-        return "list.html";
+        return "item/list.html";
     }
 
     @GetMapping("/write")
     String write() {
-        return "write.html";
+        return "item/write.html";
     }
 
     /*
@@ -47,7 +48,7 @@ public class ItemController {
     @PostMapping("/add")
     String add(@ModelAttribute Item newItem) {
         itemService.saveItem(newItem);
-        return "redirect:/list";
+        return "redirect:/item/detail/" + newItem.getId();
     }
 
     @GetMapping("/detail/{id}")
@@ -55,10 +56,10 @@ public class ItemController {
         try {
             Optional<Item> item = itemService.findItem(id);
             model.addAttribute("item", item.get());
-            return "detail.html";
+            return "item/detail.html";
         } catch(Exception e) {
             System.out.println(e.getMessage());
-            return "redirect:/list";
+            return "redirect:/item/list";
         }
     }
 
@@ -67,17 +68,17 @@ public class ItemController {
         try {
             Optional<Item> item = itemService.findItem(id);
             model.addAttribute("item", item.get());
-            return "edit.html";
+            return "item/edit.html";
         } catch(Exception e) {
-            System.out.println(e.getMessage());
-            return "redirect:/list";
+            System.out.println("=======Error====\n" + e.getMessage());
+            return "redirect:/item/list";
         }
     }
 
     @PostMapping("/test")
     String test1(@RequestBody Map<String, Object> body) {
         System.out.println(body.get("name"));
-        return "redirect:/list";
+        return "redirect:/item/list";
     }
 
     @DeleteMapping("/delete")
@@ -109,5 +110,12 @@ public class ItemController {
 //            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Not Found");
 //        }
 //    }
+
+    @GetMapping("/test2")
+    String test2() {
+        var result = new BCryptPasswordEncoder().encode("문자1111");
+        System.out.println(result);
+        return "redirect:/item/list";
+    }
 
 }
