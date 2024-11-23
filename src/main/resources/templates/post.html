@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body>
+<div class="card" th:each="post : ${posts}">
+    <div>
+        <h4 th:text="${post.title}">제목</h4>
+        <p th:text="${post.text}">내용</p>
+        <p th:text="${post.date}">날짜</p>
+    </div>
+</div>
+</body>
+</html>

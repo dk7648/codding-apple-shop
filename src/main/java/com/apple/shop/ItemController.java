@@ -10,8 +10,9 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class ItemController {
     private final ItemRepository itemRepository;
     @GetMapping("/list")
-    String hello(Model model) {
+    String list(Model model) {
         var result = itemRepository.findAll();
+        System.out.println("result : " + result.toString());
         model.addAttribute("items", result);
         return "list.html";
     }

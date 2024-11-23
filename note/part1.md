@@ -44,3 +44,11 @@ JPA로 데이터 입출력 3-step
 3. db 입출력 문법 쓰기. repository.입출력기능()
   - findAll() 테이블의 모든 값 반환
   - save() 테이블에 값 저장
+---
+HTML에 서버데이터 넣으려면
+- model에 넣은 값들을 html에서 사용하는데, thyemleaf문법을 사용한다  
+- th:text="${변수명}"로 사용
+- th:each="i : ${변수명}" i에 리스트 값 하나씩 대입해서 순차적으로 실행(반복문)
+Lombok문법
+- Entity에 적용 가능
+- @ToString toString에 멤버 변수 출력하도록 오버라이딩
