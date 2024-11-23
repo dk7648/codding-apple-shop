@@ -31,3 +31,16 @@ load gradle change 코끼리 버튼 눌러서 적용
 - @GeneratedValue(strategy = GenerationType.IDENTITY) 붙이면 투플 추가될 때 마다 자동으로 1추가된 값이 할당
 - @Column(nullable = false) 속성값에 세부설정 가능
 - DB에 반영이 늦을 수 있음
+---
+DB데이터 출력하려면
+- plugin lombok 설치, build.gradle 추가
+- settings - annotiation검색 후 enable체크
+JPA로 데이터 입출력 3-step
+1. repository 만들기
+  - interface로 만든 후 extends <입출력 원하는 테이블명, id컬럼 타입>
+  - spring에서 interface이름과 같은 class도 자동적으로 생성해줌. 거기에는 DB입출력 함수가 많음
+2. 원하는 클래스에 repository 등록
+   - @RequiredArgsConstructor 사용해서 private final repository 변수에 연결
+3. db 입출력 문법 쓰기. repository.입출력기능()
+  - findAll() 테이블의 모든 값 반환
+  - save() 테이블에 값 저장
