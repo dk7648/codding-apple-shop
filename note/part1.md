@@ -22,3 +22,12 @@ load gradle change 코끼리 버튼 눌러서 적용
 - html 안에서 thymeleaf문법으로 데이터 사용 가능
   - < h4 th:text ="${name}" >이름< /h4 >
   - name에 해당하는 값이 '이름' 위에 덮어쓰기된다.
+
+---
+테이블 만들기(Entity)
+- JPA에서는 @Entity 클래스 만들면 Table이 자동으로 생성된다.
+- @Entity 붙은 클래스의 이름이 테이블명, 클래스의 멤버변수들이 속성이 된다.
+- 기본키에는 @Id를 붙여야함
+- @GeneratedValue(strategy = GenerationType.IDENTITY) 붙이면 투플 추가될 때 마다 자동으로 1추가된 값이 할당
+- @Column(nullable = false) 속성값에 세부설정 가능
+- DB에 반영이 늦을 수 있음
