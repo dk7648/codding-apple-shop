@@ -4,19 +4,23 @@ plugins {
 	id 'io.spring.dependency-management' version '1.1.6'
 }
 
+//프로젝트 정보
 group = 'com.apple'
 version = '0.0.1-SNAPSHOT'
 
+//자바 정보
 java {
 	toolchain {
 		languageVersion = JavaLanguageVersion.of(21)
 	}
 }
 
+//외부 라이브러리 가져올 곳
 repositories {
 	mavenCentral()
 }
 
+//어떤 라이브러리 설치해서 사용하는지
 dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-web'
 	developmentOnly 'org.springframework.boot:spring-boot-devtools'
