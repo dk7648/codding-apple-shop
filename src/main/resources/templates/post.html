@@ -6,6 +6,7 @@
     <link href="/main.css" rel="stylesheet">
 </head>
 <body>
+<div th:replace="~{nav.html :: navbar}"></div>
 <div class="card" th:each="post : ${posts}">
     <div>
         <h4 th:text="${post.title}">제목</h4>

@@ -1,11 +1,14 @@
 package com.apple.shop;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.Map;
+import java.util.Optional;
 
 @Controller
 @RequiredArgsConstructor
@@ -25,13 +28,45 @@ public class ItemController {
     }
 
     @PostMapping("/add")
-    String addPost(@RequestParam String title, @RequestParam int price) {
-        System.out.println(title);
-        System.out.println(price);
-        Item newItem = new Item();
-        newItem.title = title;
-        newItem.price = price;
+    String addPost(@ModelAttribute Item newItem) {
         itemRepository.save(newItem);
+        return "redirect:list";
+    }
+    @GetMapping("/detail/{id}")
+    String detail(@PathVariable Long id, Model model) {
+        Optional<Item> result = itemRepository.findById(id);
+        try {
+            model.addAttribute("item", result.get());
+            return "detail.html";
+        } catch (Exception e) {
+            System.out.println("=======Error====\n" + e.getMessage());
+            return "redirect:list";
+        }
+    }
+
+    @GetMapping("/edit/{id}")
+    String edit(@PathVariable Long id, Model model) {
+        try {
+            Optional<Item> item = itemRepository.findById(id);
+            model.addAttribute("item", item.get());
+            return "edit.html";
+        } catch(Exception e) {
+            System.out.println("=======Error====\n" + e.getMessage());
+            return "redirect:list";
+        }
+    }
+
+    @DeleteMapping("/delete")
+    String delete(@RequestParam Long id) {
+        System.out.println(id);
+        Optional<Item> target = itemRepository.findById(id);
+        try {
+            System.out.println("now delete : " + target.get());
+            itemRepository.delete(target.get());
+        }
+        catch(Exception e) {
+            System.out.println("=======Error====\n" + e.getMessage());
+        }
         return "redirect:list";
     }
 }
