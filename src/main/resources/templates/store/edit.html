@@ -1,0 +1,26 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link href="/main.css" rel="stylesheet">
+</head>
+<body>
+<!-- navbar -->
+<div th:replace="~{nav.html::navbar}"></div>
+
+<!-- form -->
+<form action="/store/edit" method="POST">
+    <input name="name" th:value="${store.name}">
+    <input name="isOpen" th:value="${store.isOpen}">
+    <input name="address" th:value="${store.address}">
+    <input name="phoneNumber" th:value="${store.phoneNumber}">
+    <input name="id" th:value="${store.id}">
+    <button type="submit">전송</button>
+</form>
+
+</body>
+</html>

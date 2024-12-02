@@ -14,6 +14,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemRepository itemRepository;
+    private final UserRepository userRepository;
+    private final StoreRepository storeRepository;
     @GetMapping("/list")
     String list(Model model) {
         var result = itemRepository.findAll();
