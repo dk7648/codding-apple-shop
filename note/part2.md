@@ -14,3 +14,11 @@
   - th : fragment = "이름" 으로 만들어두고
   - th : replace =" ~{파일 경로 :: 이름 }"으로 사용 
   - th:replace="nav.html :: navbar('데이터1', '데이터2')" 이렇게 데이터도 묶어서 보낼 수 있다
+
+상세페이지 만들기1(Optional)
+- @GetMapping("detail/{id}") 이렇게 url에 { } 넣으면 detail/ 뒤에 아무문자 더 붙으면 여기에 해당한다는 뜻
+- 여러개 넣을 수 있고, 작명은 id말고도 다른것도 가능
+- findById의 결과값은 null일 수도 있기 때문에 Optional타입으로 받아야 함
+- Optinal로 받은 값들은 .get으로 꺼내줘야함
+- null값일 때 .get하면 안되니까 if문 써야함
+- @PathVariable Long id 이런식으로 {id} 받아올 수 있음
