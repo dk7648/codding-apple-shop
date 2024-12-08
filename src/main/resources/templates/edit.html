@@ -7,9 +7,10 @@
     <div th:replace="~{ nav.html::navbar }"> </div>
 </head>
 <body>
-<form action="/add" method="POST">
-    <input name="title" placeholder="title">
-    <input name="price" placeholder="price">
+<form action="/edit" method="POST">
+    <input name="title" th:value="${item.title}" placeholder="title">
+    <input name="price" th:value="${item.price}" placeholder="price">
+    <input name="id" th:value="${item.id}" type="hidden">
     <button type="submit">전송</button>
 </form>
 </body>
