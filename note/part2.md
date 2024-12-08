@@ -22,3 +22,7 @@
 - Optinal로 받은 값들은 .get으로 꺼내줘야함
 - null값일 때 .get하면 안되니까 if문 써야함
 - @PathVariable Long id 이런식으로 {id} 받아올 수 있음
+
+상세페이지 만들기2 & 예외처리
+- th:href="@{'/detail/' + ${i.id} }" 이런식으로 url에 id값 넣어서 생성 가능
+- 타임리프 설치한 경우에는 error.html이 있을 경우 에러발생시 자동으로 보여줌
