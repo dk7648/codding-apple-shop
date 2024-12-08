@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 @RequiredArgsConstructor
 public class ItemController {
     private final ItemRepository itemRepository;
+
     @GetMapping("/list")
     String list(Model model) {
         var result = itemRepository.findAll();
@@ -26,11 +27,12 @@ public class ItemController {
 
     @PostMapping("/add")
     String addPost(@RequestParam String title, @RequestParam int price) {
+        //@ModelAttribute Item item으로도 받아올 수 있다.
         System.out.println(title);
         System.out.println(price);
         Item newItem = new Item();
-        newItem.title = title;
-        newItem.price = price;
+        newItem.setTitle(title);
+        newItem.setPrice(price);
         itemRepository.save(newItem);
         return "redirect:list";
     }

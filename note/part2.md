@@ -5,3 +5,12 @@
   - 자료형은 받은 데이터를 해당 타입으로 변환한다는 뜻
 - String addPost(@RequestParam(name = "title") String title) 이렇게 쓰는게 기본 문법이나 생략가능
 - 매개변수에 @RequestParam Map formData 이런식으로 맵으로 받으면 한번에 받을 수 있음
+
+상품 추가기능 2 & Navbar 만들기
+- id값 자동설정 되어있으면 new Item()으로 만들어서 id값이 알아서 들어가게 해야함
+- 이후에 title, price는 직접 대입해서 값 입력
+- @RequestParam String title, @RequestParam int price 대신에 @ModelAttribute Item item 이런식으로 유저데이터를 받아올 수 있음
+- th : fragment를 사용해서 하나의 html파일을 여러 곳에 import해서 사용할 수 있음
+  - th : fragment = "이름" 으로 만들어두고
+  - th : replace =" ~{파일 경로 :: 이름 }"으로 사용 
+  - th:replace="nav.html :: navbar('데이터1', '데이터2')" 이렇게 데이터도 묶어서 보낼 수 있다
