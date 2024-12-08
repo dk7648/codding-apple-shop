@@ -26,3 +26,14 @@
 상세페이지 만들기2 & 예외처리
 - th:href="@{'/detail/' + ${i.id} }" 이런식으로 url에 id값 넣어서 생성 가능
 - 타임리프 설치한 경우에는 error.html이 있을 경우 에러발생시 자동으로 보여줌
+
+REST API의 예외처리 방법
+- rest api에서는 error.html쓸 수가없어서 try - catch 사용
+- redirect도 잘 안될거기 때문에 return ResponseEntity.status().body(""); 이렇게 리턴함
+- 모든 에러 케치하는 spring 문법도 있음. rest api에서 주로 사용
+  - @ExceptionHandler(Exception.class)
+    public void handler() {
+
+    }
+  - 같은 페이지 내의 모든 에러 처리할 수 있음
+  - 모든 controller의 에러를 한번에 처리하고 싶다면 @ControllerAdvice파일을 만들어서 위에 코드 넣어주면 됨

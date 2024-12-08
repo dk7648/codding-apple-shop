@@ -1,12 +1,10 @@
 package com.apple.shop;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.Optional;
 
@@ -39,15 +37,36 @@ public class ItemController {
         itemRepository.save(newItem);
         return "redirect:/list";
     }
+
+//    @GetMapping("/detail/{id}")
+//    String detail(@PathVariable Long id, Model model) {
+//        Optional<Item> result = itemRepository.findById(id);
+//        if (result.isPresent()) {
+//            System.out.println(result.get());
+//            model.addAttribute("item", result.get());
+//            return "detail.html";
+//        }
+//        return "redirect:/list";
+//    }
+
+    //rest api의 경우
     @GetMapping("/detail/{id}")
     String detail(@PathVariable Long id, Model model) {
-        Optional<Item> result = itemRepository.findById(id);
-        if(result.isPresent()) {
+        try {
+            Optional<Item> result = itemRepository.findById(id);
             System.out.println(result.get());
             model.addAttribute("item", result.get());
             return "detail.html";
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return "redirect:/list";
         }
-        return "redirect:/list";
     }
+
+    //같은 페이지에서 발생하는 모든 에러를 이곳에서 처리
+//    @ExceptionHandler(Exception.class)
+//    public ResponseEntity<String> handler() {
+//        return ResponseEntity.status(400).body("에러");
+//    }
 }
 
