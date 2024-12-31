@@ -6,6 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Map;
 import java.util.Optional;
 
 @Controller
@@ -52,6 +53,12 @@ public class ItemController {
     String addPost(@RequestParam Long id, @RequestParam String title, @RequestParam int price) {
         //@ModelAttribute Item item으로도 받아올 수 있다.
         itemService.editItem(id, title, price);
+        return "redirect:/list";
+    }
+
+    @PostMapping("/test1")
+    String test1(@RequestBody Map<String, Object> body) {
+        System.out.println(body.get("name"));
         return "redirect:/list";
     }
 }

@@ -41,3 +41,18 @@ REST API의 예외처리 방법
 Service 레이어로 분리하려면
 - db입출력, 데이터 검사 등을 비즈니스 로직이라고 부름
 - 비즈니스 로직을 담는 클래스는 Service라고 부름
+
+삭제기능 1 (AJAX, query string)
+- ajax 사용 시 새로고침 없이도 요청할 수 있음
+- document.querySelectorAll('.btn')[0].addEventListener('click', function() {
+    fetch('/url', {
+      method: 'POST',
+      headers : {},
+      body: '전송할데이터'
+    })
+  })
+- DELETE에서는 body가 안먹히는 경우 많음
+- JSON.stringify({name : 'kim'}) 이렇게 object자료형으로 전송 가능
+- json형태로 보내면 header에 json이라고 표시해야함.
+- @RequestParam : form데이터 받기, query string으로 온 데이터 받기
+- @RequestBody : ajax body로 보낸 데이터 받기
