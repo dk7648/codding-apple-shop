@@ -13,18 +13,24 @@
         <h4 th:text="${item.title}">바지</h4>
         <p th:text="${item.price}">7억</p>
         <a th:href="@{|/edit/${item.id}|}">수정</a>
+        <span th:onclick="fetch('/delete?id=[[${item.id}]]', { method: 'DELETE' })
+        .then(r=>r.json())
+        .then(()=> {
+            location.reload();
+        })">삭제</span>
+
     </div>
 
 </div>
-<button class="btn">버튼</button>
-<script>
-    document.querySelectorAll('.btn')[0].addEventListener('click', function() {
-        fetch('/test1', {
-        method: 'POST',
-        headers : {'Content-Type' : 'application/json'},
-        body: JSON.stringify({name: 'kim'})
-        })
-    })
-</script>
+
+<!--<script>-->
+<!--    document.querySelectorAll('.btn')[0].addEventListener('click', function() {-->
+<!--        fetch('/test1', {-->
+<!--        method: 'POST',-->
+<!--        headers : {'Content-Type' : 'application/json'},-->
+<!--        body: JSON.stringify({name: 'kim'})-->
+<!--        })-->
+<!--    })-->
+<!--</script>-->
 </body>
 </html>

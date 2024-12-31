@@ -61,5 +61,11 @@ public class ItemController {
         System.out.println(body.get("name"));
         return "redirect:/list";
     }
+
+    @DeleteMapping("/delete")
+    String deletePost(@RequestParam Long id) {
+        itemRepository.deleteById(id);
+        return "redirect:/list";
+    }
 }
 

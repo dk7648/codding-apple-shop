@@ -56,3 +56,10 @@ Service 레이어로 분리하려면
 - json형태로 보내면 header에 json이라고 표시해야함.
 - @RequestParam : form데이터 받기, query string으로 온 데이터 받기
 - @RequestBody : ajax body로 보낸 데이터 받기
+
+삭제기능 2 (AJAX 추가 내용)
+- <span th:onclick="fetch('/delete?id=[[${item.id}]]', { method: 'DELETE' })
+  .then(r=>r.json())
+  .then(()=> {
+  location.reload();
+  })">삭제</span>
