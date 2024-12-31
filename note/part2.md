@@ -77,3 +77,10 @@ Session, JWT, OAuth 개념 설명
 - 장점 : 위조여부를 server에서 처리하기에 db부담 적음
 - 단점 : token을 누가 훔쳐가면 이걸 막을 수 없음. black list 만들어서 db에서 비교해야하는데 이럴꺼면 session로그인 방식 사용하지
 - OAuth 방식 : 다른 사이트의 회원정보를 끌어다가 사용. 소셜로그인 기능 
+
+Spring Security 설치와 셋팅, Hashing
+-build.gradle에 다음 2줄 추가
+implementation 'org.springframework.boot:spring-boot-starter-security'
+implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE' 
+- SecurityConfig파일 생성
+- BCryptPasswordEncoder().encode("비밀번호") : 비밀번호 해싱
