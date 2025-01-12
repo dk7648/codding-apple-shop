@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/main.css" rel="stylesheet">
+    <div th:replace="~{ nav.html::navbar }"> </div>
+</head>
+<body>
+<div class="detail">
+    <h4>로그인</h4>
+
+    <div th:if="${param.error}"> <!-- url에 error라는 파람이 있을 경우 -->
+        <h4>로그인 실패!</h4>
+    </div>
+    <form action="/login" method="POST">
+        <input name="username" placeholder="username">
+        <input name="password" placeholder="password" type="password">
+        <button type="submit">전송</button>
+    </form>
+</div>
+</body>
+</html>

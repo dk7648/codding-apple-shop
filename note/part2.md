@@ -84,3 +84,12 @@ implementation 'org.springframework.boot:spring-boot-starter-security'
 implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELEASE' 
 - SecurityConfig파일 생성
 - BCryptPasswordEncoder().encode("비밀번호") : 비밀번호 해싱
+
+로그인1
+- security form이용해서 하려면 form태그에서 action은 login, method는 POST, input은 username, password로 고저
+- SecurityConfig에 다음 코드 추가
+  http.formLogin((formLogin) -> formLogin.loginPage("/login")
+  .defaultSuccessUrl("/")
+  .failureUrl("/fail")
+  ); 
+- 

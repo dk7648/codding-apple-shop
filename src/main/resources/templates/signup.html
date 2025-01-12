@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/main.css" rel="stylesheet">
+    <div th:replace="~{ nav.html::navbar }"> </div>
+</head>
+<body>
+<div class="detail">
+    <h4>회원가입</h4>
+    <form action="/signup" method="POST">
+        <input name="username" placeholder="username">
+        <input name="password" placeholder="password">
+        <input name="display_name" placeholder="display_name">
+        <button type="submit">전송</button>
+    </form>
+</div>
+</body>
+</html>
