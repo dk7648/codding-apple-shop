@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link href="/main.css" rel="stylesheet">
+    <div th:replace="~{ nav.html::navbar }"></div>
+</head>
+<body>
+    <h4>마이페이지</h4>
+    <div sec:authentication="principal"></div>
+    <div sec:authentication="principal.username"></div>
+    <div sec:authorize="hasAuthority('일반유저')"> <h4>일반유저만 보임</h4></div>
+    <div sec:authorize="isAuthenticated()"> <h4>로그인 했을 때만 보임</h4></div>
+    <div sec:authorize="isAnonymous()"> <h4>로그인 안했을 때만 보임</h4></div>
+</body>
+</html>

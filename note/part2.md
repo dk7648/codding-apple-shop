@@ -92,4 +92,10 @@ implementation 'org.thymeleaf.extras:thymeleaf-extras-springsecurity6:3.1.1.RELE
   .defaultSuccessUrl("/")
   .failureUrl("/fail")
   ); 
-- 
+로그인2
+- List<GrantedAuthority> 권한 = new ArrayList<>(); 권한 넣을 때는 List<GrantedAuthority>로 해야함
+- <div sec:authentication="principal"></div> 이걸로 thymeleaf문법으로 html에서 바로 유저정보 얻을 수 있음
+- <div sec:authorize="hasAuthority('일반유저')"></div> 해당유저가 '일반유저'라는 정보를 갖고 있을때만 해당 내용물을 볼 수 있음
+- <div sec:authorize="isAuthenticated()"> <h4>로그인 했을 때만 보임</h4></div>
+- <div sec:authorize="isAnonymous()"> <h4>로그인 안했을 때만 보임</h4></div>
+- @PreAuthorize 쓰면 API들 로그인 검사 편함

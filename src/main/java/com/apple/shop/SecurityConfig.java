@@ -25,6 +25,7 @@ public class SecurityConfig {
         http.authorizeHttpRequests((authorize) ->
                 authorize.requestMatchers("/**").permitAll() //해당 url에 로그인 없이 접속 허용
         );
+        http.logout(logout -> logout.logoutUrl("/logout")); //로그아웃
         return http.build();
     }
 }
